@@ -1,0 +1,106 @@
+// Flex box classes
+$screen-percentage: (5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100);
+$screen-size: (sm: 599px, md: 959px, lg: 1279px, xl: 1980px);
+$alignments: (start, center, end);
+
+.flex {
+    box-sizing: border-box;
+    flex: 1 1 0%;
+    -ms-flex: 1 1 0%;
+    -webkit-flex: 1 1 0%;
+}
+
+.wrap{
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@mixin align($x,$y){
+    .align-#{$x}-#{$y}{
+        @if($x == start){
+            $x: flex-start;
+        }
+        @if($x == end){
+            $x: flex-end;
+        }
+        @if($y == start){
+            $y: flex-start;
+        }
+        @if($y == end){
+            $y: flex-end;
+        }
+        @if($y == center){
+            max-width:100%;
+        }
+        align-items: $y;
+        align-content: $y;
+        justify-content:$x;
+    }
+}
+
+@each $align in $alignments{
+    @include align($align, start);
+    @include align($align, end);
+    @include align($align, center);
+    @include align($align, stretch)
+}
+
+
+
+@mixin layout($direction, $size){
+    .flex-layout-#{$direction}#{$size}{
+        flex-flow: $direction;
+        box-sizing: border-box;
+        display: flex;
+    }
+}
+
+@mixin flexs($size){
+    @each $percentage in $screen-percentage{
+        .flex-#{$percentage}#{$size}{
+            box-sizing: border-box;
+            flex: 1 1 percentage($percentage / 100);
+            -ms-flex: 1 1 percentage($percentage / 100);
+            -webkit-flex: 1 1 percentage($percentage / 100);
+        }
+        .flex-layout-column#{$size} .flex-#{$percentage}#{$size}{
+            max-width: 100%;
+            max-height: percentage($percentage / 100);
+        }
+        .flex-layout-row#{$size} .flex-#{$percentage}#{$size}{
+            max-width: percentage($percentage / 100);
+            max-height:100%;
+        }
+
+    }
+}
+
+
+@each $size, $px in $screen-size {
+        @media screen and (max-width: $px){
+            .flex-#{$size}{
+                flex:1 1 0%;
+                -ms-flex: 1 1 0%;
+                -webkit-flex:1 1 0%;
+                box-sizing: border-box;
+            }
+
+            @include layout(column, -$size);
+            @include layout(row, -$size);
+
+
+            .wrap-#{$size}{
+                box-sizing: border-box;
+                display: flex;
+                flex-wrap: wrap;
+            }
+           @include flexs(-$size);
+        }   
+}
+
+@include flexs('');
+@include layout(column, '');
+@include layout(row, '');
+
+
