@@ -1,0 +1,22 @@
+a.Button{
+    padding:8px;
+    color:inherit;
+    border-radius:4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    outline: 0;
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+    background-position: center;
+    transition: background 0.8s;
+    text-decoration: none;
+    display:inline-flex;
+}
+.Button:focus{
+    outline:none;
+}
+
+

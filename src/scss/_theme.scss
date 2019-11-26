@@ -1,0 +1,195 @@
+
+$light : (
+    primary: rgb(48, 63, 159),
+    accent: rgb(255, 64, 129),
+    warn:rgb(244, 67, 54),
+    background: rgb(250, 250, 250),
+    foreground : rgb(255, 255, 255),
+);
+$dark: (
+    primary: rgb(48, 63, 159),
+    accent: rgb(255, 64, 129),
+    warn:rgb(244, 67, 54),
+    background: rgb(48, 48, 48),
+    foreground : rgb(66, 66, 66),
+);
+
+$background-color-height: 200px;
+
+@function setColor($color) {
+    @if (lightness($color) > 65) {
+      @return rgba(0,0,0,0.87);
+    } @else {
+      @return rgba(255, 255, 255, 0.87);
+    }
+  }
+
+@mixin createTheme($theme){
+    @each $name, $value in $theme {
+        &.#{$name}-topbar-background, .#{$name}-topbar-background{
+            background:linear-gradient($value $background-color-height, map-get($theme, background) $background-color-height);
+        }
+
+        .#{$name}-background{
+            background-color:$value;
+        }
+
+        .#{$name}-background-color{
+            background-color:$value;
+            color:setColor($value)
+        }
+
+        .#{$name}-color{
+            color:$value
+        }
+
+        .#{$name}-vissible-color{
+            color:setColor($value)
+        }
+
+        .#{$name}-button{
+            color:$value;
+
+            &:hover{
+                background: change-color($value, $alpha: 0.1 ) radial-gradient(circle, transparent 1%, change-color($value, $alpha: 0.1 ) 1%) center/15000%;
+            }
+
+            &:active{
+                background-color:change-color($value, $alpha: 0.1 );
+                background-size: 100%;
+                transition: background 0s;
+            }
+
+            .material-icons{
+                color:$value;
+            }
+        }
+
+        .#{$name}-raised-button{
+            background-color:$value !important;
+            color:setColor($value);
+            box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+
+            &:hover{
+                background: radial-gradient(circle, transparent 1%, change-color(setColor($value), $alpha: 0.1 ) 1%) center/15000%;
+            }
+
+            &:active{
+                background-color: change-color(setColor($value), $alpha: 0.1 );
+                background-size: 100%;
+                transition: background 0s;
+            }
+
+            .material-icons{
+                color:setColor($value);
+            }
+        }
+
+        .#{$name}-flat-button{
+            background-color:$value !important;
+            color:setColor($value);
+
+            @if($name == primary){
+                &.active{
+                    color:map-get($theme, accent);
+                    .material-icons{
+                        color:map-get($theme, accent);
+                    }
+                }
+            }
+
+            @if($name == accent){
+                &.active{
+                    color:map-get($theme, primary);
+                    .material-icons{
+                        color:map-get($theme, primary);
+                    }
+                }
+            }
+            
+
+            &:hover{
+                background: radial-gradient(circle, transparent 1%, change-color(setColor($value), $alpha: 0.1 ) 1%) center/15000%;
+            }
+
+            &:active{
+                background-color:change-color(setColor($value), $alpha: 0.1 );
+                background-size: 100%;
+                transition: background 0s;
+            }
+
+            .material-icons{
+                color:setColor($value);
+            }
+        }
+
+        .#{$name}-icon-button{
+            background-color: map-get($theme , foreground );
+            color: setColor(map-get($theme , foreground ));
+
+            &:hover{
+                color: setColor($value);
+                background: $value radial-gradient(circle, transparent 1%, $value 1%) center/15000%;
+                .material-icons{
+                    color: setColor($value)
+                }
+            }
+
+            &:active{
+                background-color:change-color($value, $alpha: 0.1 );
+                background-size: 100%;
+                transition: background 0s;
+            }
+
+            .material-icons{
+                color:$value;
+            }
+        }
+
+        .#{$name}-icon-border-button{
+            background-color: map-get($theme , foreground );
+            color: setColor(map-get($theme , foreground ));
+            border:solid 1px change-color(setColor(map-get($theme , foreground )), $alpha: 0.15 );
+
+            &:hover{
+                color: setColor($value);
+                background: $value radial-gradient(circle, transparent 1%, $value 1%) center/15000%;
+                .material-icons{
+                    color: setColor($value)
+                }
+            }
+
+            &:active{
+                background-color:change-color($value, $alpha: 0.1 );
+                background-size: 100%;
+                transition: background 0s;
+            }
+
+            .material-icons{
+                color:$value;
+            }
+        }
+
+    
+        .card{
+            background-color: map-get($theme , foreground );
+            color: setColor(map-get($theme , foreground ));
+            transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+            border-radius: 4px;
+            box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+        }
+    
+
+
+    }
+}
+
+.light-theme{
+    @include createTheme($light);
+}
+
+.dark-theme{
+    @include createTheme($dark);
+}
+
+

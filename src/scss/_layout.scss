@@ -13,7 +13,7 @@ $alignments: (start, center, end);
 .wrap{
     box-sizing: border-box;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap !important;
 }
 
 @mixin align($x,$y){
@@ -50,7 +50,11 @@ $alignments: (start, center, end);
 
 @mixin layout($direction, $size){
     .flex-layout-#{$direction}#{$size}{
-        flex-flow: $direction;
+        @if($size == ''){
+            flex-flow: $direction;
+        } @else {
+            flex-flow: $direction !important;
+        }
         box-sizing: border-box;
         display: flex;
     }
@@ -93,7 +97,7 @@ $alignments: (start, center, end);
             .wrap-#{$size}{
                 box-sizing: border-box;
                 display: flex;
-                flex-wrap: wrap;
+                flex-wrap: wrap !important;
             }
            @include flexs(-$size);
         }   
@@ -104,3 +108,10 @@ $alignments: (start, center, end);
 @include layout(row, '');
 
 
+// General
+
+.container{
+    max-width:1200px;
+    margin:0 auto;
+    padding:16px;
+}

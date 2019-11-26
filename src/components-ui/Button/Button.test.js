@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Menu } from './Menu';
+import { Button } from './Button';
 
 it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<Menu />, div);
+    ReactDOM.render(<Button />, div);
     ReactDOM.unmountComponentAtNode(div);
 });
