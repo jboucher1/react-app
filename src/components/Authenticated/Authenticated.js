@@ -1,7 +1,7 @@
 import './Authenticated.scss';
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
-import { Topbar, Dashboard, UserList } from '../';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { Topbar, Trips, Trip, Theme, Logout, Vehicles } from '../';
 
 export class Authenticated extends Component {
     state = {
@@ -19,17 +19,22 @@ export class Authenticated extends Component {
 
     render() {
         return (
-            <BrowserRouter>
+            <Router>
             <div className="Authenticated primary-topbar-background">
                     <Topbar changeTheme={this.changeTheme}/>
                     <div className="view container">
-                        <Route exact path="/" component={Dashboard} />
-                        <Route path="/dashboard" component={Dashboard} />
-                        <Route path="/users" component={ UserList } />
+                        <Switch>
+                            <Redirect exact from="/" to="/trips" />
+                            <Route exact path="/trips" component={ Trips } />
+                            <Route exact path="/trip" component={ Trip } />
+                            <Route path="/theme" component={ Theme } />
+                            <Route path="/logout" component={ Logout  } />
+                            <Route path="/vehicles" component={ Vehicles  } />
+                        </Switch>
                     </div>
                     
                 </div>
-            </BrowserRouter>
+            </Router>
             );
     }
 }

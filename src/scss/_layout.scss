@@ -5,9 +5,9 @@ $alignments: (start, center, end);
 
 .flex {
     box-sizing: border-box;
-    flex: 1 1 0%;
-    -ms-flex: 1 1 0%;
-    -webkit-flex: 1 1 0%;
+    flex: 1 1 1e-09px;
+    -ms-flex: 1 1 1e-09px;
+    -webkit-flex: 1 1 1e-09px;
 }
 
 .wrap{

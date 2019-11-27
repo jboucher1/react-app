@@ -2,14 +2,15 @@ import './Topbar.scss';
 import React from 'react';
 import { Button } from '../../components-ui';
 
-export const Topbar = ({changeTheme}) => {
+export const Topbar = () => {
         return (
             <div className="Topbar flex-layout-row wrap align-start-center container primary-background-color">
-                <span>Logo</span>
+                <span>TRIPS!</span>
                 <span className="flex"></span>
-                <Button icon="speed" layout="row" onClick={changeTheme} label="Theme" theme="primary-flat"/>
-                <Button icon="speed" layout="row" link="/dashboard" label="Dashboard" theme="primary-flat"/>
-                {/* <Button icon="person" layout="row" link="/users" label="Users" theme="primary-flat"/> */}
+                <Button icon="color_lens" layout="row" link="/theme" label="Theme" theme="primary-flat"/>
+                <Button icon="location_city" layout="row" link="/trips" label="Trips" theme="primary-flat"/>
+                <Button icon="directions_car" layout="row" link="/vehicles" label="Vehicles" theme="primary-flat"/>
+                <Button icon="person" layout="row" link="/logout" label="Log out" theme="primary-flat"/>
             </div>
         );
 }

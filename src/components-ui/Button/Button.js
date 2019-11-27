@@ -1,13 +1,13 @@
 import './Button.scss';
 import React from 'react';
 import MaterialIcon from 'material-icons-react';
-import { NavLink, withRouter } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 
 // Themes:
 // primary, primary-flat, primary-raised, primary-icon, primary-icon-border
 
-export const Button = ({ icon, size = 32, layout = 'row', link, label, theme = 'flat', onClick, href}) => {
+export const Button = ({ icon, size = 32, layout = 'row', link, label, theme = 'flat', onClick, href, className}) => {
 
     const style = {
         fontSize: `${size / 2.5}px`,
@@ -15,7 +15,7 @@ export const Button = ({ icon, size = 32, layout = 'row', link, label, theme = '
         fontWeight: 'bold'
     }
 
-    const _layout = `Button flex-layout-${layout} align-center-center `;
+    const _layout = `Button ${className ? className: ''} flex-layout-${layout} align-center-center `;
     const materialicon = icon ? (<MaterialIcon icon={icon} size={size} />) : null;
     const textlabel = label ? (<span className="text" style={style} >{label}</span>) : null;
 
