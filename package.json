@@ -2,6 +2,7 @@
   "name": "react-play",
   "version": "0.1.0",
   "private": true,
+  "main": "index.js",
   "dependencies": {
     "material-icons-react": "^1.0.4",
     "node-sass": "^4.13.0",
