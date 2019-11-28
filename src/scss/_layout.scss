@@ -1,6 +1,5 @@
 // Flex box classes
-$screen-percentage: (5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100);
-$screen-size: (sm: 599px, md: 959px, lg: 1279px, xl: 1980px);
+$screen-percentage: (5, 10, 15, 20, 25, 30, 33, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100);
 $alignments: (start, center, end);
 
 .flex {
@@ -15,6 +14,8 @@ $alignments: (start, center, end);
     display: flex;
     flex-wrap: wrap !important;
 }
+
+
 
 @mixin align($x,$y){
     .align-#{$x}-#{$y}{
@@ -49,7 +50,7 @@ $alignments: (start, center, end);
 
 
 @mixin layout($direction, $size){
-    .flex-layout-#{$direction}#{$size}{
+    .#{$direction}#{$size}{
         @if($size == ''){
             flex-flow: $direction;
         } @else {
@@ -61,47 +62,114 @@ $alignments: (start, center, end);
 }
 
 @mixin flexs($size){
+    // .flex#{$size}{
+    //     flex:1 1 1e-09px;
+    //     -ms-flex: 1 1 1e-09px;
+    //     -webkit-flex:1 1 1e-09px;
+    //     box-sizing: border-box;
+    // }
+    // .wrap#{$size}{
+    //     box-sizing: border-box;
+    //     display: flex;
+    //     flex-wrap: wrap !important;
+    // }
     @each $percentage in $screen-percentage{
-        .flex-#{$percentage}#{$size}{
-            box-sizing: border-box;
-            flex: 1 1 percentage($percentage / 100);
-            -ms-flex: 1 1 percentage($percentage / 100);
-            -webkit-flex: 1 1 percentage($percentage / 100);
+        @if($size == ''){
+            .column#{$size} &.flex-#{$percentage}#{$size}{
+                box-sizing: border-box;
+                flex: 1 1 percentage($percentage / 100);
+                -ms-flex: 1 1 percentage($percentage / 100);
+                -webkit-flex: 1 1 percentage($percentage / 100);
+                max-width: 100%;
+                max-height: percentage($percentage / 100);
+            }
+            .row#{$size} &.flex-#{$percentage}#{$size}{
+                box-sizing: border-box;
+                flex: 1 1 percentage($percentage / 100);
+                -ms-flex: 1 1 percentage($percentage / 100);
+                -webkit-flex: 1 1 percentage($percentage / 100);
+                max-width: percentage($percentage / 100);
+                max-height:100%;
+            }
+            .column &.flex-#{$percentage}#{$size}{
+                box-sizing: border-box;
+                flex: 1 1 percentage($percentage / 100);
+                -ms-flex: 1 1 percentage($percentage / 100);
+                -webkit-flex: 1 1 percentage($percentage / 100);
+                max-width: 100%;
+                max-height: percentage($percentage / 100);
+            }
+            .row &.flex-#{$percentage}#{$size}{
+                box-sizing: border-box;
+                flex: 1 1 percentage($percentage / 100);
+                -ms-flex: 1 1 percentage($percentage / 100);
+                -webkit-flex: 1 1 percentage($percentage / 100);
+                max-width: percentage($percentage / 100);
+                max-height:100%;
+            }
+        }@else{
+            .column#{$size} &.flex-#{$percentage}#{$size}{
+                box-sizing: border-box;
+                flex: 1 1 percentage($percentage / 100) !important;
+                -ms-flex: 1 1 percentage($percentage / 100) !important;
+                -webkit-flex: 1 1 percentage($percentage / 100) !important;
+                max-width: 100%;
+                max-height: percentage($percentage / 100) !important;
+            }
+            .row#{$size} &.flex-#{$percentage}#{$size}{
+                box-sizing: border-box;
+                flex: 1 1 percentage($percentage / 100) !important;
+                -ms-flex: 1 1 percentage($percentage / 100) !important;
+                -webkit-flex: 1 1 percentage($percentage / 100) !important;
+                max-width: percentage($percentage / 100) !important;
+                max-height:100%;
+            }
+            .column &.flex-#{$percentage}#{$size}{
+                box-sizing: border-box;
+                flex: 1 1 percentage($percentage / 100) !important;
+                -ms-flex: 1 1 percentage($percentage / 100) !important;
+                -webkit-flex: 1 1 percentage($percentage / 100) !important;
+                max-width: 100%;
+                max-height: percentage($percentage / 100) !important;
+            }
+            .row &.flex-#{$percentage}#{$size}{
+                box-sizing: border-box;
+                flex: 1 1 percentage($percentage / 100) !important;
+                -ms-flex: 1 1 percentage($percentage / 100) !important;
+                -webkit-flex: 1 1 percentage($percentage / 100) !important;
+                max-width: percentage($percentage / 100) !important;
+                max-height:100%;
+            }
         }
-        .flex-layout-column#{$size} .flex-#{$percentage}#{$size}{
-            max-width: 100%;
-            max-height: percentage($percentage / 100);
-        }
-        .flex-layout-row#{$size} .flex-#{$percentage}#{$size}{
-            max-width: percentage($percentage / 100);
-            max-height:100%;
-        }
+        
+       
 
     }
 }
 
 
-@each $size, $px in $screen-size {
-        @media screen and (max-width: $px){
-            .flex-#{$size}{
-                flex:1 1 0%;
-                -ms-flex: 1 1 0%;
-                -webkit-flex:1 1 0%;
-                box-sizing: border-box;
-            }
+$screen-size: (sm: 599px, md: 959px, lg: 1279px, xl: 1980px);
 
-            @include layout(column, -$size);
-            @include layout(row, -$size);
-
-
-            .wrap-#{$size}{
-                box-sizing: border-box;
-                display: flex;
-                flex-wrap: wrap !important;
-            }
-           @include flexs(-$size);
-        }   
+@mixin createMedia($size, $min, $max){
+    @media screen and (min-width:$min) and (max-width: $max){
+        @include layout(column, -#{$size});
+        @include layout(row, -#{$size});
+        @include flexs(-#{$size});
+        .hide-#{$size}{
+            display:none;
+        }
+        .hide-button-text-#{$size} .text{
+            display:none;
+        }
+    }
 }
+
+@include createMedia(sm, 0px, 599px);
+@include createMedia(md, 600px, 959px);
+@include createMedia(lg, 960px, 1279px);
+@include createMedia(xl, 1280px, 1980px);
+
+
 
 @include flexs('');
 @include layout(column, '');

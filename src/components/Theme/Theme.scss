@@ -1,3 +1,37 @@
+$theme-color-height:95px;
+
 .Theme{
+    .Topbar span:nth-child(1),.Topbar a:nth-child(5), .Topbar a:nth-child(6){
+        display:none;
+    }
+    .Topbar{
+        pointer-events: none !important;
+        padding-bottom:50px;     
+        .text{
+            display:none;
+        }
+    }
+    .theme-card{
+        transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+        border-radius: 4px;
+        box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+        margin:8px;
+        padding-bottom:1px;
+        .card{
+            height:150px;
+            padding:8px;
+            margin:8px;
+            margin-top:-24px;
+            background-color: inherit !important;
+        }
+   
+        .select{
+            margin:8px;
+            border-radius:100%;
+            height:60px;
+            width:60px;
+            margin:0 auto;
+        }
+    }
     
 }

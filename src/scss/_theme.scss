@@ -1,17 +1,56 @@
 
-$light : (
-    primary: rgb(48, 63, 159),
-    accent: rgb(255, 64, 129),
-    warn:rgb(244, 67, 54),
-    background: rgb(250, 250, 250),
-    foreground : rgb(255, 255, 255),
-);
-$dark: (
-    primary: rgb(48, 63, 159),
-    accent: rgb(255, 64, 129),
-    warn:rgb(244, 67, 54),
-    background: rgb(48, 48, 48),
-    foreground : rgb(66, 66, 66),
+$themes: (
+    blue-dark: (
+        primary: rgb(48, 63, 159),
+        accent: rgb(255, 64, 129),
+        warn:rgb(244, 67, 54),
+        background: rgb(48, 48, 48),
+        foreground : rgb(66, 66, 66),
+    ),
+    blue-light : (
+        primary: rgb(48, 63, 159),
+        accent: rgb(255, 64, 129),
+        warn:rgb(244, 67, 54),
+        background: rgb(250, 250, 250),
+        foreground : rgb(255, 255, 255),
+    ),
+    pink-dark : (
+        primary: #9c27b0,
+        accent: #69f0ae,
+        warn:rgb(244, 67, 54),
+        background: rgb(48, 48, 48),
+        foreground : rgb(66, 66, 66),
+    ),
+    pink-light : (
+        primary: #9c27b0,
+        accent: #69f0ae,
+        warn:rgb(244, 67, 54),
+        background: rgb(250, 250, 250),
+        foreground : rgb(255, 255, 255),
+    ),
+    purple-dark : (
+        primary: #e91e63,
+        accent: #607d8b,
+        warn:rgb(244, 67, 54),
+        background: rgb(48, 48, 48),
+        foreground : rgb(66, 66, 66),
+    ),
+    purple-light : (
+        primary: #e91e63,
+        accent: #607d8b,
+        warn:rgb(244, 67, 54),
+        background: rgb(250, 250, 250),
+        foreground : rgb(255, 255, 255),
+    ),
+    mint-dark : (
+        primary: #66fcf1,
+        accent: #45a29e,
+        warn:rgb(244, 67, 54),
+        background: #0b0c10,
+        foreground : #1f2833,
+    ),
+   
+   
 );
 
 $background-color-height: 200px;
@@ -46,6 +85,7 @@ $background-color-height: 200px;
         .#{$name}-vissible-color{
             color:setColor($value)
         }
+        
 
         .#{$name}-button{
             color:$value;
@@ -184,12 +224,15 @@ $background-color-height: 200px;
     }
 }
 
-.light-theme{
-    @include createTheme($light);
-}
 
-.dark-theme{
-    @include createTheme($dark);
+@each $key, $theme in $themes{
+    .#{$key}-theme{
+        @include createTheme($theme);
+    }
 }
-
+@each $key, $theme in $themes{
+    .#{$key}-theme-examples{
+        @include createTheme($theme);
+    }
+}
 

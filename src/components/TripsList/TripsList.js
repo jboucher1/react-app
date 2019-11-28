@@ -6,7 +6,7 @@ export const TripsList = ({trips}) => {
     console.log(trips)
     const list = trips.map((trip) => {
         return (
-            <div className="item flex-layout-row align-start-center" key={trip.id}>
+            <div className="item row align-start-center" key={trip.id}>
                 <span className="flex">{trip.name}</span>
                 <Button link={`/trip/${trip.id}`} icon="arrow_forward_ios" />
             </div>
