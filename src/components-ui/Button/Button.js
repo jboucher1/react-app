@@ -1,30 +1,30 @@
 import './Button.scss';
 import React from 'react';
-import MaterialIcon from 'material-icons-react';
 import { NavLink } from 'react-router-dom'
 
 
 // Themes:
 // primary, primary-flat, primary-raised, primary-icon, primary-icon-border
 
-export const Button = ({ icon, size = 32, layout = 'row', link, label, theme = 'primary', onClick, href, className}) => {
+export const Button = ({ icon, size = 32, layout = 'row', link, label, theme = 'primary', onClick, href, className, style}) => {
 
-    const style = {
+    const labelstyle = {
         fontSize: `${size / 2.5}px`,
         padding: '8px',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        width:'100%'
     }
 
     const _layout = `Button ${className ? className: ''} ${layout} align-center-center `;
-    const materialicon = icon ? (<MaterialIcon icon={icon} size={size} />) : null;
-    const textlabel = label ? (<span className="text" style={style} >{label}</span>) : null;
-
+    const textlabel = label ? (<span className="text" style={labelstyle} >{label}</span>) : null;
+    const materialicon = icon ? <i className={`material-icons icon-${size} md-dark`}>{icon}</i> : null;
 
     const type = () => {
+        
 
-        if(link){
+        if(link){  
             return (
-                <NavLink className={_layout + theme + '-button'} to={link}>
+                <NavLink className={_layout + theme + '-button'} to={link} style={style}>
                     {materialicon}
                     {textlabel}
                 </NavLink>
@@ -33,16 +33,16 @@ export const Button = ({ icon, size = 32, layout = 'row', link, label, theme = '
 
         if(onClick){
             return (
-                <a className={_layout + theme + '-button'} onClick={onClick}>
+                <div className={_layout + theme + '-button'} onClick={onClick} style={style}>
                     {materialicon}
                     {textlabel}
-                </a>
+                </div>  
             );
         };
 
         if(href){
             return (
-                <a className={_layout + theme + '-button'} href={href}>
+                <a className={_layout + theme + '-button'} href={href} style={style}>
                     {materialicon}
                     {textlabel}
                 </a>
@@ -54,4 +54,7 @@ export const Button = ({ icon, size = 32, layout = 'row', link, label, theme = '
     }
 
     return type();
+    
+
+    
 }
