@@ -8,6 +8,7 @@ export { Trips } from './Trips/Trips';
 export { Logout } from './Logout/Logout';
 export { Theme } from './Theme/Theme';
 export { TripsList } from './TripsList/TripsList';
-
 export { Vehicles } from './Vehicles/Vehicles';
-
+export { TripLocationList } from './TripLocationList/TripLocationList';
+export { TripLocation } from './TripLocation/TripLocation';
+export { TripLocations } from './TripLocations/TripLocations';

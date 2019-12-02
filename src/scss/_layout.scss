@@ -172,6 +172,8 @@ $screen-size: (sm: 599px, md: 959px, lg: 1279px, xl: 1980px);
 
 
 @include flexs('');
+@include layout(column-reverse, '');
+@include layout(row-reverse, '');
 @include layout(column, '');
 @include layout(row, '');
 

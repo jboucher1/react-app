@@ -1,4 +1,4 @@
-a.Button{
+.Button{
     padding:8px;
     color:inherit;
     border-radius:4px;
@@ -18,4 +18,11 @@ a.Button{
     outline:none;
 }
 
-
+@for $size from 14 to 48 {
+    $sizepx: #{$size}px;
+    .icon-#{$size}{
+        font-size:$sizepx;
+        height:$sizepx;
+        width:$sizepx;
+    }
+}

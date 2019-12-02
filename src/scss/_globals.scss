@@ -20,3 +20,8 @@ body {
   .scroll{
     overflow-y:auto; 
   }
+
+  a, a:focus{
+    outline:none;
+    text-decoration: none;
+  }

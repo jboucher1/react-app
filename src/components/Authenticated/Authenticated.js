@@ -13,7 +13,7 @@ export class Authenticated extends Component {
                         <Switch>
                             <Redirect exact from="/" to="/trips" />
                             <Route exact path="/trips" component={ Trips } />
-                            <Route exact path="/trip" component={ Trip } />
+                            <Route  path="/trip/:id?" component={ Trip } />
                             <Route path="/theme" component={ Theme } />
                             <Route path="/logout" component={ Logout  } />
                             <Route path="/vehicles" component={ Vehicles  } />

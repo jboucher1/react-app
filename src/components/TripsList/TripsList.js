@@ -1,19 +1,23 @@
 import './TripsList.scss';
 import React from 'react';
-import { Button } from '../../components-ui';
+import { Link } from 'react-router-dom'
 
 export const TripsList = ({trips}) => {
     console.log(trips)
     const list = trips.map((trip) => {
         return (
-            <div className="item row align-start-center" key={trip.id}>
-                <span className="flex">{trip.name}</span>
-                <Button link={`/trip/${trip.id}`} icon="arrow_forward_ios" />
-            </div>
+            <Link className="item row align-start-center card" key={trip.id} to={`/trip/${trip.id}`} >
+                <div className="column align-center-start flex">
+                    <span className="flex">{trip.name}</span>
+                    <span className="flex">{trip.date.toString()}</span>
+                </div>
+                
+                <i className="material-icons icon-32">arrow_forward_ios</i>
+            </Link>
         )
     })
         return (
-            <div className="TripsList card">
+            <div className="TripsList">
                 {list}
             </div>
         );
